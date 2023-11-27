@@ -1,0 +1,18 @@
+@import url(./fonts.css);
+:root {
+  --dark: #221F20;
+  --light: #EEF4F9;
+  --medium: #7A7777;
+  --body-background: #FFFCFA;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: work-sans-400, sans-serif;
+  height: 100%;
+  background-color: var(--body-background);
+}/*# sourceMappingURL=style.css.map */

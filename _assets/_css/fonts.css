@@ -1,0 +1,20 @@
+@font-face {
+    font-family: "work-sans-400";
+    font-variation-settings: 'wght' 400 !important;
+    src: url(../fonts/WorkSans-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: "work-sans-500";
+    font-variation-settings: 'wght' 500 !important;
+    src: url(../fonts/WorkSans-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: "work-sans-600";
+    font-variation-settings: 'wght' 600 !important;
+    src: url(../fonts/WorkSans-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: "work-sans-700";
+    font-variation-settings: 'wght' 700 !important;
+    src: url(../fonts/WorkSans-VariableFont_wght.ttf);
+}
