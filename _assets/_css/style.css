@@ -25,6 +25,11 @@ nav {
   background-color: white;
   padding: 32px 32px 32px 40px;
   margin: 20px 20px 0;
+  position: sticky;
+  top: -1px;
+  left: 0;
+  right: 0;
+  transition: all 0.2s linear;
 }
 nav .navbar-desktop {
   list-style-type: none;
@@ -38,9 +43,14 @@ nav .navbar-desktop a {
   color: #000;
   font-size: 14px;
   line-height: 20px;
+  transition: all 0.2s ease-in-out;
+}
+nav .navbar-desktop a:hover {
+  opacity: 0.6;
 }
 nav .contact-us {
   float: right;
+  transition: all 0.3s ease-in-out;
 }
 nav .contact-us a {
   display: flex;
@@ -56,6 +66,9 @@ nav .contact-us a {
 nav .contact-us img {
   margin-left: 25px;
   height: 14px;
+}
+nav .contact-us:hover {
+  transform: scale(1.03);
 }
 nav .hamburger {
   display: none;
@@ -74,16 +87,45 @@ nav .hamburger button p {
 }
 nav .navbar-mobile {
   display: none;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
   position: fixed;
   top: 82px;
   left: 0;
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.9);
-  transition: 0.3s;
   z-index: 999;
   overflow: hidden;
   padding: 25px;
+}
+nav .navbar-mobile.fade-left-animation {
+  animation: fade-left-animation 0.5s ease-in-out;
+  opacity: 1;
+  display: block;
+}
+@keyframes fade-left-animation {
+  0% {
+    transform: translate(-100px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+nav .navbar-mobile.fade-right-animation {
+  animation: fade-right-animation 0.5s ease-in-out;
+}
+@keyframes fade-right-animation {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-100px, 0);
+    opacity: 0;
+  }
 }
 nav .navbar-mobile ul {
   list-style-type: none;
@@ -114,12 +156,18 @@ header .primary-heading {
   line-height: 24px;
   font-weight: 500;
 }
+header .primary-heading .single-line {
+  height: 24px;
+}
 header .secondary-heading {
   font-size: 64px;
   line-height: 64px;
   margin-top: 24px;
   font-weight: 400;
   text-transform: capitalize;
+}
+header .secondary-heading .single-line {
+  height: 64px;
 }
 
 .hero-section {
@@ -203,7 +251,7 @@ header .secondary-heading {
   text-align: center;
   margin-bottom: 45px;
 }
-.main-section .quality-products p {
+.main-section .quality-products .para {
   font-size: 24px;
   color: var(--medium);
   max-width: 750px;
@@ -233,6 +281,38 @@ header .secondary-heading {
   margin-top: 10px;
   font-size: 24px;
   color: var(--medium);
+}
+
+.pre-loader {
+  background: var(--dark);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pre-loader .circle-loader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 0px);
+  left: calc(50% - 30px);
+  border: 6px solid var(--dark);
+  border-top-color: var(--light);
+  border-bottom-color: var(--light);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: animate-circle-loader 1s linear infinite;
+}
+@keyframes animate-circle-loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1045px) {
@@ -326,5 +406,75 @@ header .secondary-heading {
   .main-section .quality-products p {
     margin: auto;
     width: 100%;
+  }
+}
+.up-text-animation .single-line {
+  overflow: hidden;
+}
+.up-text-animation span {
+  animation-name: text-animation;
+  animation-duration: calc(var(--i) * 1s);
+  animation-timing-function: ease-in-out;
+  display: inline-block;
+}
+@keyframes text-animation {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.word-add-animation {
+  opacity: 0;
+}
+.word-add-animation.active {
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+.word-add-animation.active .spacing {
+  width: 15px;
+}
+.word-add-animation.active span {
+  animation-name: fadeLeft;
+  animation-duration: calc(var(--i) * 1s);
+  animation-timing-function: ease-in-out;
+}
+@keyframes fadeLeft {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-up-animation {
+  opacity: 0;
+}
+.fade-up-animation.active {
+  opacity: 1;
+  animation-delay: 3s;
+  animation: fade-up-animation 1s ease-in-out;
+}
+@keyframes fade-up-animation {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }/*# sourceMappingURL=style.css.map */
