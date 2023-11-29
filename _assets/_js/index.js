@@ -6,16 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
   customCursorSetting();
 });
 
-function removeElementIfHidden() {
-  const displayNoneElement = document.querySelector('.d-none'); 
-
-  if (displayNoneElement && window.innerWidth < 768) {
-    displayNoneElement.remove(); 
-  }
-}
-window.addEventListener('resize', removeElementIfHidden);
-removeElementIfHidden();
-
 function hamburgerToggle() {
   const toggleButton = document.querySelector(".toggle-button");
   const hamburgerIcon = toggleButton.querySelector(".hamburger-icon");
