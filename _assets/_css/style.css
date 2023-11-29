@@ -18,6 +18,14 @@ body {
   font-weight: 400;
 }
 
+.d-lg-none {
+  display: none;
+}
+
+.d-lg-block {
+  display: block;
+}
+
 nav {
   display: flex;
   align-items: center;
@@ -477,6 +485,12 @@ nav .navbar-mobile li a {
   }
 }
 @media screen and (max-width: 767px) {
+  .d-none {
+    display: none;
+  }
+  .d-block {
+    display: block;
+  }
   nav {
     margin: 0;
     padding: 16px 24px 17px 27.5px;
