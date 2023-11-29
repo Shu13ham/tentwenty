@@ -1,4 +1,8 @@
-@import url(./fonts.css);
+@font-face {
+  font-family: "work-sans";
+  src: url(../_fonts/WorkSans-VariableFont_wght.ttf);
+  font-display: auto;
+}
 :root {
   --dark: #221F20;
   --light: #EEF4F9;

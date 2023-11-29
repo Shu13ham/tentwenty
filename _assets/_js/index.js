@@ -6,6 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
   customCursorSetting();
 });
 
+function removeElementIfHidden() {
+  const displayNoneElement = document.querySelector('.d-none'); 
+
+  if (displayNoneElement && window.innerWidth < 768) {
+    displayNoneElement.remove(); 
+  }
+}
+window.addEventListener('resize', removeElementIfHidden);
+removeElementIfHidden();
+
 function hamburgerToggle() {
   const toggleButton = document.querySelector(".toggle-button");
   const hamburgerIcon = toggleButton.querySelector(".hamburger-icon");
@@ -43,7 +53,7 @@ function navbarToggle() {
         navElement.style.margin = "20px 20px 0"; //as per design with margin at sides and top
       }
     }
-  });
+  }, { passive: true }); // for speeding up page
 }
 
 function preloaderSetting() {
@@ -79,7 +89,7 @@ function checkViewportVisibility() {
     });
   }
   // Event listener for scroll
-  window.addEventListener("scroll", handleVisibility);
+  window.addEventListener("scroll", handleVisibility, { passive: true });
   // Initial check on initial load
   handleVisibility();
 }
