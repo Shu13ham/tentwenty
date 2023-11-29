@@ -12,21 +12,21 @@ function hamburgerToggle() {
   const navbarMobile = document.querySelector(".navbar-mobile");
 
   toggleButton.addEventListener("click", function () {
-    const isHamburgerHidden = hamburgerIcon.style.display === "none";
+    const isHamburgerHidden = hamburgerIcon.style.display === "none";    //to check if hamburger is hidden or visible
 
     document.body.style.overflow = !isHamburgerHidden ? "hidden" : "";
-    hamburgerIcon.style.display = !isHamburgerHidden ? "none" : "block";
-    crossIcon.style.display = !isHamburgerHidden ? "block" : "none";
+    hamburgerIcon.style.display = !isHamburgerHidden ? "none" : "block"; //hamburger toggle
+    crossIcon.style.display = !isHamburgerHidden ? "block" : "none"; //close icon toggle
 
     if (!isHamburgerHidden) {
       navbarMobile.style.display = "block";
-      navbarMobile.classList.add("fade-left-animation");
+      navbarMobile.classList.add("fade-left-animation"); //fade left animation on click of hamburger
     } else {
       navbarMobile.classList.remove("fade-left-animation");
-      navbarMobile.classList.add("fade-right-animation");
+      navbarMobile.classList.add("fade-right-animation"); //fade left animation on click of close icon
       setTimeout(() => {
         navbarMobile.style.display = "none";
-        navbarMobile.classList.remove("fade-right-animation");
+        navbarMobile.classList.remove("fade-right-animation"); //delay so that animation plays till the end smoothly
       }, 500);
     }
   });
@@ -37,9 +37,9 @@ function navbarToggle() {
     const navElement = document.querySelector("nav");
     if (navElement) {
       if (window.scrollY > 0 && screen.width >= 768) {
-        navElement.style.margin = "0px";
+        navElement.style.margin = "0px"; //making it full width alongside position sticky
       } else if (window.scrollY < 10 && screen.width >= 768) {
-        navElement.style.margin = "20px 20px 0";
+        navElement.style.margin = "20px 20px 0"; //as per design with margin at sides and top
       }
     }
   });
@@ -52,7 +52,7 @@ function preloaderSetting() {
       preloader.style.opacity = "0";
       setTimeout(() => {
         preloader.remove();
-      }, 1000);
+      }, 1000); //delay so that animation plays smoothly
     });
   }
 }
@@ -67,7 +67,7 @@ function checkViewportVisibility() {
           ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
       : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
   };
-  // Function to handle the visibility of elements
+  //To handle the visibility of elements
   function handleVisibility() {
     const elements = document.querySelectorAll(".in-viewport");
 
@@ -77,9 +77,9 @@ function checkViewportVisibility() {
       }
     });
   }
-  // Event listener for scroll or any relevant event triggering visibility changes
+  // Event listener for scroll
   window.addEventListener("scroll", handleVisibility);
-  // Initial check on page load
+  // Initial check on initial load
   handleVisibility();
 }
 
@@ -101,7 +101,7 @@ function changeSlide(n) {
 
   if (slideIndex + slidesToShow >= totalSlides) {
     slidesContainer.style.transform = `translateX(-${
-      ((slideIndex + slidesToShow - totalSlides) * slideWidth) / 3
+      ((slideIndex + slidesToShow - totalSlides) * slideWidth) / 3 //calculating how much to scroll at once
     }px)`;
   } else {
     slidesContainer.style.transform = `translateX(-${
@@ -109,7 +109,7 @@ function changeSlide(n) {
     }px)`;
   }
 
-  // Remove 'active' class from all slides
+  // Remove active and similar classes from all slides
   slides.forEach((slide) => slide.classList.remove("active"));
   slides.forEach((slide) => slide.classList.remove("left-slide-rotate"));
   slides.forEach((slide) => slide.classList.remove("right-slide-rotate"));
@@ -119,7 +119,7 @@ function changeSlide(n) {
   // Calculate the index of the middle slide
   const middleSlideIndex = slideIndex + Math.ceil(slidesToShow / 2);
 
-  // Add 'active' class to the middle slide
+  // Add classes to the apropriate slides in order to decide the transform calculation
   slides[middleSlideIndex].classList.add("active");
   slides[middleSlideIndex - 1].classList.add("left-slide-rotate");
   slides[middleSlideIndex + 1].classList.add("right-slide-rotate");
@@ -134,4 +134,16 @@ slides[3].classList.add("right-slide-rotate");
 changeSlide(0);
 // setInterval(() => {
 //   changeSlide(1);
-// }, 3000);
+// }, 3000); //for automatic carousel play after 3 secs
+
+
+const customCursor = document.querySelector('.custom-cursor');
+
+const positionElement = (e) => {
+  const mouseY = e.clientY;
+  const mouseX = e.clientX;
+  customCursor.style.top = `${mouseY}px`;
+  customCursor.style.left = `${mouseX}px`;
+}
+
+window.addEventListener('mousemove', positionElement);

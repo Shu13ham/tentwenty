@@ -263,6 +263,7 @@ nav .navbar-mobile li a {
   width: 100%;
   margin: 80px auto 0;
   overflow: hidden;
+  position: relative;
 }
 .main-section .quality-products .image-carousel-wrapper .carousel {
   position: relative;
@@ -342,6 +343,18 @@ nav .navbar-mobile li a {
 }
 .main-section .quality-products .image-carousel-wrapper .next {
   right: 25px;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(253, 252, 252, 0.4901960784);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
 }
 
 .pre-loader {
