@@ -1,0 +1,4 @@
+User-agent: *
+
+# Allow search engines to access the sitemap
+Sitemap: https://www.yourwebsite.com/sitemap.xml
