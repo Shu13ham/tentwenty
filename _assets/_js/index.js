@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   navbarToggle();
   preloaderSetting();
   checkViewportVisibility();
+  customCursorSetting();
 });
 
 function hamburgerToggle() {
@@ -83,6 +84,17 @@ function checkViewportVisibility() {
   handleVisibility();
 }
 
+function customCursorSetting() {
+  const customCursor = document.querySelector('.custom-cursor');
+  const positionElement = (e) => {
+    const mouseY = e.clientY;
+    const mouseX = e.clientX;
+    customCursor.style.top = `${mouseY}px`;
+    customCursor.style.left = `${mouseX}px`;
+  }
+  window.addEventListener('mousemove', positionElement);
+}
+
 let slideIndex = 0;
 const slidesToShow = 3;
 const slides = document.querySelectorAll(".slide");
@@ -137,13 +149,39 @@ changeSlide(0);
 // }, 3000); //for automatic carousel play after 3 secs
 
 
-const customCursor = document.querySelector('.custom-cursor');
+// Variables to track the start position of the drag
+let dragStartX = 0;
+let dragging = false;
 
-const positionElement = (e) => {
-  const mouseY = e.clientY;
-  const mouseX = e.clientX;
-  customCursor.style.top = `${mouseY}px`;
-  customCursor.style.left = `${mouseX}px`;
+// Add event listeners for touch and mouse events
+slidesContainer.addEventListener("mousedown", handleDragStart);
+slidesContainer.addEventListener("touchstart", handleDragStart);
+slidesContainer.addEventListener("mousemove", handleDrag);
+slidesContainer.addEventListener("touchmove", handleDrag);
+slidesContainer.addEventListener("mouseup", handleDragEnd);
+slidesContainer.addEventListener("touchend", handleDragEnd);
+slidesContainer.addEventListener("mouseleave", handleDragEnd);
+
+// Functions to handle drag start, drag, and drag end events
+function handleDragStart(e) {
+  dragging = true;
+  dragStartX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
 }
 
-window.addEventListener('mousemove', positionElement);
+function handleDrag(e) {
+  if (dragging) {
+    const currentX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
+    const diffX = currentX - dragStartX;
+    
+    // Change the slide based on the drag movement
+    if (Math.abs(diffX) > 50) {
+      changeSlide(diffX > 0 ? -1 : 1); // Change the slide based on the drag direction
+      dragging = false;
+    }
+  }
+}
+
+function handleDragEnd() {
+  dragging = false;
+}
+

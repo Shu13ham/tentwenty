@@ -96,7 +96,7 @@ nav .navbar-mobile {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.5098039216);
   z-index: 999;
   overflow: hidden;
   padding: 25px;
