@@ -30,7 +30,7 @@ nav {
     background-color: white;
     padding: 32px 33px 33px 39px;
     margin: 20px 20px 0;
-    position: sticky;
+    position: fixed;
     top: -1px;
     left: 0;
     right: 0;
@@ -123,33 +123,13 @@ nav {
             opacity: 1;
             display: block;
 
-            @keyframes fade-left-animation {
-                0% {
-                    transform: translate(-100px, 0);
-                    opacity: 0;
-                }
-
-                100% {
-                    transform: translate(0, 0);
-                    opacity: 1;
-                }
-            }
+            
         }
 
         &.fade-right-animation {
             animation: fade-right-animation 0.5s ease-in-out;
 
-            @keyframes fade-right-animation {
-                0% {
-                    transform: translate(0, 0);
-                    opacity: 1;
-                }
-
-                100% {
-                    transform: translate(-100px, 0);
-                    opacity: 0;
-                }
-            }
+            
         }
 
         ul {
@@ -174,13 +154,17 @@ nav {
 }
 
 .hero-section {
-    position: absolute;
+    position: relative;
     top: 0;
-    z-index: -999;
+    z-index: 0;
     left: 0;
     height: 100vh;
     overflow: hidden;
-
+    transition: all 1s ease-in-out;
+    background: url("../_images/hero-bg/hero-background-2.jpg");
+    // animation: scale-image-animation 4s ease-in-out;
+    background-size: cover;
+    
     header {
         position: absolute;
         top: 50%;
@@ -211,7 +195,28 @@ nav {
         }
     }
 
-    .hero-carousel {
+    &.hero-carousel {
+        display: flex;
+        flex-direction: column;
+
+        .split-image {
+            width: 100%;
+            background: url("../_images/hero-bg/hero-background-1.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: all 1s ease-in-out;
+            &.split-section-one{
+                height: 50vh;
+                animation: split-image-animation 3s ease-in-out;
+            }
+            &.split-section-two{
+                height: 50vh;
+            }
+        }
+
+        .split-image:nth-child(3) {
+            background-position-y: -50vh;
+        }
 
         .carousel-image {
             width: 100%;
@@ -219,7 +224,7 @@ nav {
 
         .thumbnail-slide-wrapper {
             position: absolute;
-            bottom: 10%;
+            top: 70%;
             left: 15%;
             display: flex;
             align-items: center;
@@ -284,11 +289,9 @@ nav {
 }
 
 .main-section {
-    margin-top: 100vh;
-    margin-bottom: 150px;
+    margin: 153px 0;
 
     .quality-products {
-        padding-top: 52px;
 
         .title {
             font-size: 56px;
@@ -417,6 +420,7 @@ nav {
         }
     }
 }
+
 .custom-cursor{
     position: fixed;
     top: 0;
@@ -427,7 +431,8 @@ nav {
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
-  }
+}
+
 .pre-loader {
     background: var(--dark);
     position: fixed;
@@ -452,14 +457,99 @@ nav {
         animation: animate-circle-loader 1s linear infinite;
     }
 
-    @keyframes animate-circle-loader {
-        0% {
-            transform: rotate(0deg);
-        }
+    
+}
 
-        100% {
-            transform: rotate(360deg);
-        }
+@keyframes split-image-animation {
+    0%{
+        margin-bottom: 0vh;
+    }
+    100%{
+        margin-bottom: 100vh;
+    }
+}
+
+@keyframes scale-image-animation {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fade-right-animation {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-100px, 0);
+        opacity: 0;
+    }
+}
+
+@keyframes animate-circle-loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes text-animation {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeLeft {
+    0% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateX(200px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-up-animation {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-left-animation {
+    0% {
+        transform: translate(-100px, 0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
     }
 }
 
@@ -475,17 +565,7 @@ nav {
         display: inline-block;
     }
 
-    @keyframes text-animation {
-        0% {
-            transform: translateY(50px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
+    
 }
 
 .single-word-fade-animation {
@@ -507,22 +587,7 @@ nav {
             animation-timing-function: ease-in-out;
         }
 
-        @keyframes fadeLeft {
-            0% {
-                transform: translateX(-200px);
-                opacity: 0;
-            }
-
-            60% {
-                opacity: 1;
-                transform: translateX(200px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+        
     }
 }
 
@@ -533,24 +598,13 @@ nav {
         animation: fade-up-animation 1.5s ease-in-out;
         opacity: 1;
 
-        @keyframes fade-up-animation {
-            0% {
-                transform: translateY(100px);
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+        
     }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1045px) {
     .hero-section{
         header {
-            top: 22%;
             .secondary-heading {
                 font-size: 50px;
                 line-height: 50px;
@@ -558,15 +612,13 @@ nav {
             }
         }
 
-        .hero-carousel .thumbnail-slide-wrapper {
-            bottom: unset;
-            top: 30%;
-        }
+        &.hero-carousel{
+            .split-image{
+                width: 205%;
+            }
+        } 
     } 
 
-    .main-section {
-        margin-top: 50vh;
-    }
 }
 
 @media screen and (max-width: 767px) {
@@ -595,6 +647,8 @@ nav {
     }
 
     .hero-section {
+        // background-position: -120px 160px;
+        
         header {
             left: 25px;
             top: 45%;
@@ -616,9 +670,9 @@ nav {
             }
         }
 
-        .hero-carousel {
-            .carousel-image {
-                height: 100vh;
+        &.hero-carousel {
+            .split-image{
+                width: 325%;
             }
             .thumbnail-slide-wrapper {
                 left: 25px;
@@ -643,73 +697,75 @@ nav {
                 }
             }
         }
-
         
     }
 
-    .main-section .quality-products {
-        padding-top: 0;
+    .main-section{
+        margin: 75px 0;
 
-        .title {
-            font-size: 30px;
-            line-height: 1;
-            margin-bottom: 20px;
-        }
+        .quality-products {
 
-        .para {
-            font-size: 16px;
-            max-width: 75%;
-        }
-
-        .image-carousel-wrapper {
-            margin-top: 25px;
-
-            .carousel {
-                .image-title {
-                    margin-top: 50px;
-                    line-height: 40px;
-                    font-size: 24px;
+            .title {
+                font-size: 30px;
+                line-height: 1;
+                margin-bottom: 20px;
+            }
+    
+            .para {
+                font-size: 16px;
+                max-width: 75%;
+            }
+    
+            .image-carousel-wrapper {
+                margin-top: 25px;
+    
+                .carousel {
+                    .image-title {
+                        margin-top: 50px;
+                        line-height: 40px;
+                        font-size: 24px;
+                    }
+    
+                    .image-caption {
+                        font-size: 16px;
+                        line-height: 22px;
+                        margin-top: 15px;
+                    }
+    
+                    .slide {
+                        img {
+                            width: 150%;
+                        }
+    
+                        &.active {
+                            img {
+                                transform: rotate(0) translateY(20px);
+                            }
+                        }
+    
+                        &.left-slide-rotate {
+                            img {
+                                transform: rotate(-9.5deg) translate(-130px, 20px);
+                            }
+                        }
+    
+                        &.right-slide-rotate {
+                            img {
+                                transform: rotate(9.5deg) translate(130px, 20px);
+                            }
+                        }
+                    }
                 }
-
-                .image-caption {
-                    font-size: 16px;
-                    line-height: 22px;
-                    margin-top: 15px;
-                }
-
-                .slide {
-                    img {
-                        width: 150%;
-                    }
-
-                    &.active {
-                        img {
-                            transform: rotate(0) translateY(20px);
-                        }
-                    }
-
-                    &.left-slide-rotate {
-                        img {
-                            transform: rotate(-9.5deg) translate(-130px, 20px);
-                        }
-                    }
-
-                    &.right-slide-rotate {
-                        img {
-                            transform: rotate(9.5deg) translate(130px, 20px);
-                        }
-                    }
+    
+                button {
+                    top: 40%;
                 }
             }
-
-            button {
-                top: 40%;
+    
+            p {
+                margin: auto;
+                width: 100%;
             }
         }
-
-        p {
-            margin: auto;
-            width: 100%;
-        }
-    }
+    } 
 }
